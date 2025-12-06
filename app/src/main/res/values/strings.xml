@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name" translatable="false">obstacle_game</string>
+    <string name="move_right">move one lane right</string>
+    <string name="move_left">move one lane left</string>
 </resources>

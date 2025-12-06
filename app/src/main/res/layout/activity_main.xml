@@ -8,47 +8,14 @@
     android:background="@color/background_road"
     tools:context=".MainActivity">
 
-
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginBottom="100dp">
-
-        <ImageView
-            android:id="@+id/carLeft"
-            android:layout_width="@dimen/car_size"
-            android:layout_height="@dimen/car_size"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/car" />
-
-        <ImageView
-            android:id="@+id/carCenter"
-            android:layout_width="@dimen/car_size"
-            android:layout_height="@dimen/car_size"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/car" />
-
-        <ImageView
-            android:id="@+id/carRight"
-            android:layout_width="@dimen/car_size"
-            android:layout_height="@dimen/car_size"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/car" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id ="@+id/heart_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="8dp">
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin">
 
         <ImageView
             android:id="@+id/Main_IMG_heart1"
@@ -68,6 +35,135 @@
             android:layout_height="@dimen/heart_size"
             app:srcCompat="@drawable/heart" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id ="@+id/car_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="100dp">
+
+        <ImageView
+            android:id="@+id/carLeft"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/car_size"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:contentDescription="car in left lane"
+            app:srcCompat="@drawable/car" />
+
+        <ImageView
+            android:id="@+id/carCenter"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/car_size"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:contentDescription="car in center lane"
+            app:srcCompat="@drawable/car" />
+
+        <ImageView
+            android:id="@+id/carRight"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/car_size"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:contentDescription="car in right lane"
+            app:srcCompat="@drawable/car" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_below="@id/heart_container"
+        android:layout_above="@id/control_container"
+        android:baselineAligned="false">
+
+        <!-- Left Lane Spacer -->
+        <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1.5" />
+
+        <!-- Divider 1 (Separates Left and Center Lane) -->
+        <View android:id="@+id/divider_1"
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="#EEEEEE" />
+
+        <!-- Center Lane Spacer -->
+        <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1.5" />
+
+        <!-- Divider 2 (Separates Center and Right Lane) -->
+        <View android:id="@+id/divider_2"
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="#EEEEEE" />
+
+        <!-- Right Lane Spacer -->
+        <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1.5" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <RelativeLayout
+        android:id="@+id/control_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="8dp">
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/main_FAB_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            app:icon ="@drawable/left_button"
+            app:iconGravity="end"
+            app:iconTint="@color/white"
+            android:backgroundTint="@color/button_color"
+            android:contentDescription="@string/move_left"
+            />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/main_FAB_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="@dimen/default_margin"
+            android:clickable="true"
+            app:icon ="@drawable/right_button"
+            app:iconTint="@color/white"
+            android:backgroundTint="@color/button_color"
+            app:iconGravity="start"
+            android:contentDescription="@string/move_right"
+            />
+    </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/IMG_box1"
+        android:layout_width="@dimen/box_size"
+        android:layout_height="@dimen/box_size"
+        app:srcCompat="@drawable/box" />
+
+    <ImageView
+        android:id="@+id/IMG_box2"
+        android:layout_width="@dimen/box_size"
+        android:layout_height="@dimen/box_size"
+        app:srcCompat="@drawable/box" />
+
+    <ImageView
+        android:id="@+id/IMG_box3"
+        android:layout_width="@dimen/box_size"
+        android:layout_height="@dimen/box_size"
+        app:srcCompat="@drawable/box" />
 
 
 </RelativeLayout>
