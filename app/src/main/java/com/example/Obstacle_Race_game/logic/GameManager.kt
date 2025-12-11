@@ -2,7 +2,6 @@ package com.example.Obstacle_Race_game.logic
 
 import com.example.Obstacle_Race_game.Utilities.Constants
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -32,7 +31,7 @@ class GameManager(private val listener: GameListener  ) {
      * function to initialize the game
      */
     init {
-        resetGame();
+        resetGame()
     }
 
     /**
@@ -45,7 +44,7 @@ class GameManager(private val listener: GameListener  ) {
         isCarInvulnerable =false
 
         for(i in 0 until Constants.GameLogic.ROAD_DEPTH){
-            gameGrid[i].fill(0);
+            gameGrid[i].fill(0)
         }
 
         //update UI and game status
