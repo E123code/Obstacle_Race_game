@@ -4,9 +4,6 @@
     android:height="163.861dp"
     android:viewportWidth="163.861"
     android:viewportHeight="163.861"
-    android:rotation ="180"
-    android:pivotX = "50%"
-    android:pivotY = "50%"
     >
     <group
         android:scaleX="-1"

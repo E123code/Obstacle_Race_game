@@ -1,0 +1,11 @@
+package com.example.Obstacle_Race_game.Utilities
+
+class Constants {
+    object GameLogic {
+        const val LANES = 3
+        const val ROAD_DEPTH = 7
+        const val GAME_TICK_MS = 33L
+        const val INVULNERABILITY_DURATION_MS = 500L
+    }
+
+}
