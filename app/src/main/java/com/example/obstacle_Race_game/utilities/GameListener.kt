@@ -1,4 +1,4 @@
-package com.example.Obstacle_Race_game.logic
+package com.example.obstacle_Race_game.utilities
 
 /**
  * Interface to be implemented in MainActivity class
@@ -15,17 +15,10 @@ interface GameListener {
 
 
     //SIGNAL FOR CHANGING NUM OF LIVES
-    fun onCollision(collisions: Int)
+    fun onCollision()
 
     //SIGNAL FOR GAME OVER
     fun onGameOver()
 
 
 }
-
-
-
-
-
-
-

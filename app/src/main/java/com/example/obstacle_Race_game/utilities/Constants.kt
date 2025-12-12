@@ -1,4 +1,4 @@
-package com.example.Obstacle_Race_game.Utilities
+package com.example.obstacle_Race_game.utilities
 
 class Constants {
     object GameLogic {

@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.Obstacle_Race_game"
+    namespace = "com.example.obstacle_Race_game"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.Obstacle_Race_game"
+        applicationId = "com.example.obstacle_Race_game"
         minSdk = 26
         targetSdk = 36
         versionCode = 1

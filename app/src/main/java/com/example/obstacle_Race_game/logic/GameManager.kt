@@ -1,15 +1,16 @@
-package com.example.Obstacle_Race_game.logic
+package com.example.obstacle_Race_game.logic
 
-import com.example.Obstacle_Race_game.Utilities.Constants
+import com.example.obstacle_Race_game.utilities.Constants
+import com.example.obstacle_Race_game.utilities.GameListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 import kotlin.random.Random
 
-class GameManager(private val listener: GameListener  ) {
+class GameManager(private val listener: GameListener) {
 
-    var collsions = 0
+    var collisions = 0
         private set
 
     var carIndex =1 //left lane =0, center lane =1, right lane =2
@@ -23,7 +24,7 @@ class GameManager(private val listener: GameListener  ) {
         private set
 
 
-//the  matirx represent the obstacles( boxes)
+//the  matrix represent the obstacles( boxes)
     private val gameGrid = MutableList(Constants.GameLogic.ROAD_DEPTH){ IntArray(Constants.GameLogic.LANES) {0} }
 
 
@@ -39,7 +40,7 @@ class GameManager(private val listener: GameListener  ) {
      */
 
     fun resetGame(){
-        collsions =0
+        collisions =0
         carIndex = 1
         isCarInvulnerable =false
 
@@ -49,7 +50,7 @@ class GameManager(private val listener: GameListener  ) {
 
         //update UI and game status
         listener.onLaneChange(carIndex)
-        listener.onCollision(collsions)
+        listener.onCollision()
         isGameRunning = true
     }
 
@@ -108,10 +109,10 @@ class GameManager(private val listener: GameListener  ) {
      * gets the scope the timer works on
      */
     private  fun handleCrash(coroutineScope: CoroutineScope){
-        collsions ++
-        listener.onCollision(collsions)
+        collisions ++
+        listener.onCollision()
 
-        if(collsions >= 3){
+        if(collisions >= 3){
             listener.onGameOver()
             isGameRunning = false
         }

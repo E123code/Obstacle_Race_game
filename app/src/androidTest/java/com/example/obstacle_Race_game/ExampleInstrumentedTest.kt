@@ -1,4 +1,4 @@
-package com.example.Obstacle_Race_game
+package com.example.obstacle_Race_game
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

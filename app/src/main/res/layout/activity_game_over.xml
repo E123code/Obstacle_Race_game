@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background_road"
+    tools:context=".GameOverActivity">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/gameOver_LBL_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Game Over!😭"
+        android:layout_centerInParent="true"
+        android:textSize="@dimen/gameOver_text_size"
+        android:textStyle="bold"
+        android:gravity="center"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gameOver_BTN_newGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:text="New Game"
+        android:textSize="@dimen/title_size"/>
+
+</RelativeLayout>

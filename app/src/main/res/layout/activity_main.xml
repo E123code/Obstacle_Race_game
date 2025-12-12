@@ -50,23 +50,17 @@
 
             <ImageView
                 android:id="@+id/IMG_box1"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box2"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box3"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -77,23 +71,17 @@
 
             <ImageView
                 android:id="@+id/IMG_box4"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box5"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box6"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -104,23 +92,17 @@
 
             <ImageView
                 android:id="@+id/IMG_box7"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box8"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box9"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -131,23 +113,17 @@
 
             <ImageView
                 android:id="@+id/IMG_box10"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box11"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box12"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -158,23 +134,17 @@
 
             <ImageView
                 android:id="@+id/IMG_box13"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box14"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box15"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -185,23 +155,17 @@
 
             <ImageView
                 android:id="@+id/IMG_box16"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box17"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box18"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -211,23 +175,17 @@
 
             <ImageView
                 android:id="@+id/IMG_box19"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box20"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
 
             <ImageView
                 android:id="@+id/IMG_box21"
-                android:layout_width="@dimen/box_size"
-                android:layout_height="@dimen/box_size"
-                android:layout_weight="1"
+                style="@style/Obstacle_style"
                 app:srcCompat="@drawable/box" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -273,11 +231,10 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
+            android:layout_marginStart="2dp"
             android:layout_marginBottom="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"
             app:icon ="@drawable/left_button"
-            app:iconGravity="end"
             app:iconTint="@color/white"
             android:backgroundTint="@color/button_color"
             />
@@ -288,13 +245,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="@dimen/default_margin"
-            android:layout_marginEnd="0dp"
+            android:layout_marginEnd="2dp"
             android:layout_marginStart="@dimen/default_margin"
             android:clickable="true"
             app:icon ="@drawable/right_button"
             app:iconTint="@color/white"
             android:backgroundTint="@color/button_color"
-            app:iconGravity="start"
             />
     </RelativeLayout>
 

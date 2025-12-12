@@ -1,4 +1,4 @@
-package com.example.Obstacle_Race_game
+package com.example.obstacle_Race_game
 
 import org.junit.Test
 
