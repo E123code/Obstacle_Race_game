@@ -28,12 +28,6 @@ class GameManager(private val listener: GameListener) {
     private val gameGrid = MutableList(Constants.GameLogic.ROAD_DEPTH){ IntArray(Constants.GameLogic.LANES) {0} }
 
 
-    /**
-     * function to initialize the game
-     */
-    init {
-        resetGame()
-    }
 
     /**
      *   reset the game  to initial state
@@ -42,6 +36,7 @@ class GameManager(private val listener: GameListener) {
     fun resetGame(){
         collisions =0
         carIndex = 1
+
         isCarInvulnerable =false
 
         for(i in 0 until Constants.GameLogic.ROAD_DEPTH){
@@ -50,7 +45,6 @@ class GameManager(private val listener: GameListener) {
 
         //update UI and game status
         listener.onLaneChange(carIndex)
-        listener.onCollision()
         isGameRunning = true
     }
 
@@ -97,7 +91,7 @@ class GameManager(private val listener: GameListener) {
      * gets the scope the timer works on
      */
     private fun checkCollision(coroutineScope: CoroutineScope){
-        if(isCarInvulnerable) return //if the car can't crash
+        if(!isGameRunning || isCarInvulnerable) return //if the car can't crash
 
         if (gameGrid[0][carIndex] ==1 )
             handleCrash(coroutineScope)

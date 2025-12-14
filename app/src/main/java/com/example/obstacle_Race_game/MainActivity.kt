@@ -20,7 +20,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity(), GameListener {
+class MainActivity : AppCompatActivity(),GameListener{
 
     private var timerOn: Boolean = false
     private lateinit var main_FAB_right : ExtendedFloatingActionButton
@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity(), GameListener {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         findViews()
         gameManager = GameManager(this)
         initViews()
@@ -63,9 +62,9 @@ class MainActivity : AppCompatActivity(), GameListener {
             findViewById(R.id.Main_IMG_heart3)
             )
         main_IMG_cars = arrayOf(
-            findViewById(R.id.carLeft),
-            findViewById(R.id.carCenter),
-            findViewById(R.id.carRight)
+            findViewById(R.id.Main_carLeft),
+            findViewById(R.id.Main_carCenter),
+            findViewById(R.id.Main_carRight)
         )
 
         obstaclesGrid = arrayOf(
@@ -110,6 +109,10 @@ class MainActivity : AppCompatActivity(), GameListener {
     private fun initViews(){
         main_FAB_right.setOnClickListener {v: View -> gameManager.moveCar(1)}
         main_FAB_left.setOnClickListener {v: View -> gameManager.moveCar(-1)}
+        // When the activity resumes, the game loop should start.
+        gameManager.resetGame()
+
+
     }
 
 
@@ -152,9 +155,12 @@ class MainActivity : AppCompatActivity(), GameListener {
     }
 
     override fun onMatrixUpdate(grid: List<IntArray>) {
-        for (row in 0 until Constants.GameLogic.ROAD_DEPTH){
-            for (col in 0 until Constants.GameLogic.LANES){
-                val currentObs = obstaclesGrid[row][col]
+        var rows = Constants.GameLogic.ROAD_DEPTH
+        var cols = Constants.GameLogic.LANES
+        for (row in 0 until rows){
+            val row_index = rows - 1 - row
+            for (col in 0 until cols){
+                val currentObs = obstaclesGrid[row_index][col]
                 currentObs.visibility = if (grid[row][col] == 1) View.VISIBLE else View.INVISIBLE
             }
         }

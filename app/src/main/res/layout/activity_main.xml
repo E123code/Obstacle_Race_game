@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_road"
+    android:layoutDirection="ltr"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -39,9 +40,13 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_above="@id/control_container"
         android:layout_below="@id/heart_container"
-        android:layout_above="@id/control_container">
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="-1dp"
+        android:layout_marginBottom="2dp"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -190,27 +195,26 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id ="@+id/car_container"
+            android:id="@+id/car_container"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/carLeft"
+                android:id="@+id/Main_carLeft"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/car_size"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/car" />
 
             <ImageView
-                android:id="@+id/carCenter"
+                android:id="@+id/Main_carCenter"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/car_size"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/car" />
 
             <ImageView
-                android:id="@+id/carRight"
+                android:id="@+id/Main_carRight"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/car_size"
                 android:layout_weight="1"
@@ -227,30 +231,32 @@
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/main_FAB_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:clickable="true"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="@dimen/default_margin"
             android:layout_marginBottom="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"
             app:icon ="@drawable/left_button"
             app:iconTint="@color/white"
             android:backgroundTint="@color/button_color"
+            android:contentDescription="@string/move_left"
             />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/main_FAB_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="@dimen/default_margin"
-            android:layout_marginEnd="2dp"
+            android:layout_marginEnd="@dimen/default_margin"
             android:layout_marginStart="@dimen/default_margin"
             android:clickable="true"
             app:icon ="@drawable/right_button"
             app:iconTint="@color/white"
             android:backgroundTint="@color/button_color"
+            android:contentDescription="@string/move_right"
             />
     </RelativeLayout>
 
