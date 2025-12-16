@@ -240,6 +240,7 @@
             android:layout_marginEnd="@dimen/default_margin"
             app:icon ="@drawable/left_button"
             app:iconTint="@color/white"
+            app:iconGravity="end"
             android:backgroundTint="@color/button_color"
             android:contentDescription="@string/move_left"
             />
@@ -255,6 +256,7 @@
             android:clickable="true"
             app:icon ="@drawable/right_button"
             app:iconTint="@color/white"
+            app:iconGravity="start"
             android:backgroundTint="@color/button_color"
             android:contentDescription="@string/move_right"
             />

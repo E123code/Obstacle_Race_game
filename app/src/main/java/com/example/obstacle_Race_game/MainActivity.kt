@@ -184,6 +184,7 @@ class MainActivity : AppCompatActivity(),GameListener{
 
     override fun onGameOver() {
         stopGameLoop()
+        Log.d("Game Status","Game over!")
         for(car in main_IMG_cars) { car.visibility = View.GONE}
         for(row in obstaclesGrid){
             for( obstacle  in  row){

@@ -110,9 +110,9 @@ class GameManager(private val listener: GameListener) {
             listener.onGameOver()
             isGameRunning = false
         }
-        else{
-            isCarInvulnerable = true
-            coroutineScope.launch{
+        else{// if the game isn't over
+            isCarInvulnerable = true //for this period of time make the car invulnerable
+            coroutineScope.launch{ // so it won't lose any life in this time period using coroutine
                 delay(Constants.GameLogic.INVULNERABILITY_DURATION_MS)
                 isCarInvulnerable = false
             }
