@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity(),GameListener{
     private fun startGameLoop(){
         if (!timerOn && gameManager.isGameRunning ) {
             timerOn = true
-
+            gameManager.resetInvulnerability()
             gameLoopJob = lifecycleScope.launch {
                 while (gameManager.isGameRunning){
                     val currentTime = System.currentTimeMillis()
@@ -136,6 +136,7 @@ class MainActivity : AppCompatActivity(),GameListener{
 
     private fun stopGameLoop(){
         if(!timerOn) return
+        gameManager.resetInvulnerability()
         timerOn = false
         gameLoopJob.cancel()
     }

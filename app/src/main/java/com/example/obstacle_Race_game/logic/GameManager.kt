@@ -123,6 +123,14 @@ class GameManager(private val listener: GameListener) {
 
 
     /**
+     * resets the invulnerability of car in case of pause or reset
+     */
+    fun resetInvulnerability(){
+        isCarInvulnerable = false
+    }
+
+
+    /**
      *   executes functions on every tick of clock
      */
 
