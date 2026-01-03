@@ -12,13 +12,18 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.obstacle_Race_game.utilities.Constants
-import com.example.obstacle_Race_game.utilities.GameListener
+import com.example.obstacle_Race_game.Interfaces.GameListener
+import com.example.obstacle_Race_game.Interfaces.TiltCallback
 import com.example.obstacle_Race_game.utilities.SignalManager
 import com.example.obstacle_Race_game.logic.GameManager
+import com.example.obstacle_Race_game.utilities.TiltDetector
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.math.abs
+
 
 class MainActivity : AppCompatActivity(),GameListener{
 
@@ -37,6 +42,12 @@ class MainActivity : AppCompatActivity(),GameListener{
 
     private lateinit var gameManager : GameManager
 
+    private lateinit var main_LBL_score: MaterialTextView
+
+    private lateinit var tiltDetector: TiltDetector
+
+    private var lastLaneChangeTime: Long = 0L
+    private var currentGameTickDelay: Long = Constants.GameLogic.GAME_TICK_MS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,33 +73,32 @@ class MainActivity : AppCompatActivity(),GameListener{
             findViewById(R.id.Main_IMG_heart3)
             )
         main_IMG_cars = arrayOf(
-            findViewById(R.id.Main_carLeft),
-            findViewById(R.id.Main_carCenter),
-            findViewById(R.id.Main_carRight)
+            findViewById(R.id.Main_car0),
+            findViewById(R.id.Main_car1),
+            findViewById(R.id.Main_car2),
+            findViewById(R.id.Main_car3),
+            findViewById(R.id.Main_car4)
+
         )
 
         obstaclesGrid = arrayOf(
             arrayOf(
                 findViewById(R.id.IMG_box1),
                 findViewById(R.id.IMG_box2),
-                findViewById(R.id.IMG_box3)
-            ),
-            arrayOf(
+                findViewById(R.id.IMG_box3),
                 findViewById(R.id.IMG_box4),
-                findViewById(R.id.IMG_box5),
-                findViewById(R.id.IMG_box6)
+                findViewById(R.id.IMG_box5)
             ),
             arrayOf(
+                findViewById(R.id.IMG_box6),
                 findViewById(R.id.IMG_box7),
                 findViewById(R.id.IMG_box8),
-                findViewById(R.id.IMG_box9)
+                findViewById(R.id.IMG_box9),
+                findViewById(R.id.IMG_box10)
             ),
             arrayOf(
-                findViewById(R.id.IMG_box10),
                 findViewById(R.id.IMG_box11),
-                findViewById(R.id.IMG_box12)
-            ),
-            arrayOf(
+                findViewById(R.id.IMG_box12),
                 findViewById(R.id.IMG_box13),
                 findViewById(R.id.IMG_box14),
                 findViewById(R.id.IMG_box15)
@@ -96,17 +106,38 @@ class MainActivity : AppCompatActivity(),GameListener{
             arrayOf(
                 findViewById(R.id.IMG_box16),
                 findViewById(R.id.IMG_box17),
-                findViewById(R.id.IMG_box18)
+                findViewById(R.id.IMG_box18),
+                findViewById(R.id.IMG_box19),
+                findViewById(R.id.IMG_box20)
             ),
             arrayOf(
-                findViewById(R.id.IMG_box19),
-                findViewById(R.id.IMG_box20),
-                findViewById(R.id.IMG_box21)
+                findViewById(R.id.IMG_box21),
+                findViewById(R.id.IMG_box22),
+                findViewById(R.id.IMG_box23),
+                findViewById(R.id.IMG_box24),
+                findViewById(R.id.IMG_box25)
+            ),
+            arrayOf(
+                findViewById(R.id.IMG_box26),
+                findViewById(R.id.IMG_box27),
+                findViewById(R.id.IMG_box28),
+                findViewById(R.id.IMG_box29),
+                findViewById(R.id.IMG_box30)
+            ),
+            arrayOf(
+                findViewById(R.id.IMG_box31),
+                findViewById(R.id.IMG_box32),
+                findViewById(R.id.IMG_box33),
+                findViewById(R.id.IMG_box34),
+                findViewById(R.id.IMG_box35)
             )
+
         )
     }
 
     private fun initViews(){
+
+        initTiltDetector()
         main_FAB_right.setOnClickListener {v: View -> gameManager.moveCar(1)}
         main_FAB_left.setOnClickListener {v: View -> gameManager.moveCar(-1)}
         // When the activity resumes, the game loop should start.
@@ -115,6 +146,36 @@ class MainActivity : AppCompatActivity(),GameListener{
 
     }
 
+    private fun initTiltDetector() {
+        tiltDetector = TiltDetector(
+            this,
+            object : TiltCallback {
+                override fun onTiltX(x: Float)
+                {
+                    if (System.currentTimeMillis() - lastLaneChangeTime >= Constants.GameLogic.LANE_CHANGE_DELAY_MS) {
+                        if (abs(x) >= 3.0) {
+                            gameManager.moveCar(-1)
+                            lastLaneChangeTime = System.currentTimeMillis()
+                        } else if (abs(x) <= -3.0) {
+                            gameManager.moveCar(1)
+                            lastLaneChangeTime = System.currentTimeMillis()
+                        }
+                    }
+                }
+
+                override fun onTiltY(y: Float) {
+                    currentGameTickDelay = when {
+                        y < 0.0f -> Constants.GameLogic.GAME_TICK_MS / 2
+                        y > 6.0f -> Constants.GameLogic.GAME_TICK_MS * 2
+                        else -> Constants.GameLogic.GAME_TICK_MS
+                    }
+                }
+
+
+
+            }
+        )
+    }
 
     private fun startGameLoop(){
         if (!timerOn && gameManager.isGameRunning ) {
@@ -144,25 +205,48 @@ class MainActivity : AppCompatActivity(),GameListener{
     override fun onPause() {
         super.onPause()
         Log.d("Game Status","On Pause!")
+        tiltDetector.stop()
         stopGameLoop()
     }
 
     override fun onResume() {
         super.onResume()
         Log.d("Game Status","On Resume!")
+        tiltDetector.start()
         if(gameManager.isGameRunning){
             startGameLoop()
         }
     }
 
+    override fun onScoreUpdate(score: Int) {
+        main_LBL_score.text = score.toString()
+    }
+
     override fun onMatrixUpdate(grid: List<IntArray>) {
         var rows = Constants.GameLogic.ROAD_DEPTH
         var cols = Constants.GameLogic.LANES
+        val boxP = resources.getDimensionPixelSize(R.dimen.box_padding)
+        val coinP = resources.getDimensionPixelSize(R.dimen.coin_padding)
         for (row in 0 until rows){
             val row_index = rows - 1 - row
             for (col in 0 until cols){
+                val itemType = grid[row][col]
                 val currentObs = obstaclesGrid[row_index][col]
-                currentObs.visibility = if (grid[row][col] == 1) View.VISIBLE else View.INVISIBLE
+                when(itemType){
+                    Constants.ItemTypes.EMPTY->{
+                        currentObs.visibility = View.INVISIBLE
+                    }
+                    Constants.ItemTypes.OBSTACLE->{
+                        currentObs.visibility = View.VISIBLE
+                        currentObs.setImageResource(R.drawable.box)
+                        currentObs.setPadding(boxP,boxP,boxP,boxP)
+                    }
+                    Constants.ItemTypes.COIN->{
+                        currentObs.visibility = View.VISIBLE
+                        currentObs.setImageResource(R.drawable.coin)
+                        currentObs.setPadding(coinP,coinP,coinP,coinP)
+                    }
+                }
             }
         }
     }

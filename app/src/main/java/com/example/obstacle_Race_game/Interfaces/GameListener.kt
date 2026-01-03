@@ -1,4 +1,4 @@
-package com.example.obstacle_Race_game.utilities
+package com.example.obstacle_Race_game.Interfaces
 
 /**
  * Interface to be implemented in MainActivity class
@@ -20,5 +20,6 @@ interface GameListener {
     //SIGNAL FOR GAME OVER
     fun onGameOver()
 
+    fun onScoreUpdate(score: Int)
 
 }
