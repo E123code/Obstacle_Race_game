@@ -110,6 +110,7 @@ class GameManager(private val listener: GameListener) {
             Constants.ItemTypes.COIN->{
                 score += Constants.GameLogic.COIN_DEFAULT
                 listener.onScoreUpdate(score)
+                listener.onCoinCollected()
                 gameGrid[0][carIndex] = Constants.ItemTypes.EMPTY
             }
         }
@@ -125,6 +126,7 @@ class GameManager(private val listener: GameListener) {
     private  fun handleCrash(coroutineScope: CoroutineScope){
         collisions ++
         listener.onCollision()
+        listener.onLivesUpdate()
 
         if(collisions >= 3){
             listener.onGameOver()

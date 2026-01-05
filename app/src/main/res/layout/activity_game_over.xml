@@ -12,24 +12,61 @@
         android:id="@+id/gameOver_LBL_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
         android:gravity="center"
         android:textColor="@color/text_color"
         android:textSize="@dimen/gameOver_text_size"
         android:textStyle="bold"
-        tools:text="Game Over!😭" />
+        tools:text="Game Over!😭\n" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gameOver_LBL_title"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/default_margin"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/highScore_ET_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/please_enter_name"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColorHint="@color/black" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/highScore_BTN_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:text="@string/send"
+            android:textSize="@dimen/title_size"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/gameOver_BTN_newGame"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/default_margin"
         android:textStyle="bold"
-        android:text="New Game"
+        android:text="Main Menu"
         android:textSize="@dimen/title_size"
         />
+
 
 </RelativeLayout>

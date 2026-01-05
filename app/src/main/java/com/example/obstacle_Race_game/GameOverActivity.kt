@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.obstacle_Race_game.utilities.Constants
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 
@@ -38,13 +39,17 @@ class GameOverActivity: AppCompatActivity() {
     private fun initViews() {
         val bundle: Bundle? = intent.extras
 
-        val message = bundle?.getString("MESSAGE","🤷🏻‍♂️ Unknown Status!")
+        val message = bundle?.getString(Constants.BundleKeys.MESSAGE_KEY,"🤷🏻‍♂️ Unknown Status!")
+        val score = bundle?.getInt(Constants.BundleKeys.SCORE_KEY, 0)
 
         gameOver_LBL_title.text = buildString {
             append(message)
+            append("\n")
+            append("Score:")
+            append(score)
         }
         gameOver_BTN_newGame.setOnClickListener { v: View ->
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, StartActivity::class.java)
             startActivity(intent)
             finish()
         }

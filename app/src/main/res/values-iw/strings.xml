@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">משחק מכשולים</string>
     <string name="move_left">זוז שמאלה</string>
     <string name="move_right">זוז ימינה</string>
+    <string name="send">שלח</string>
+    <string name="please_enter_name">הכנס שם</string>
 </resources>

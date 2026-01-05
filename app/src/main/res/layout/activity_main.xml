@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/title_size"
             android:textStyle="bold"
             tools:text="00000" />
@@ -76,14 +76,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:weightSum="8.2">
+            android:weightSum="11.2">
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/road_matrix"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="7"
+                android:layout_weight="10"
                 android:orientation="vertical"
-                android:weightSum="7">
+                android:weightSum="10">
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -317,9 +317,74 @@
                         android:id="@+id/IMG_box35"
                         style="@style/Obstacle_style"
                         app:srcCompat="@drawable/box" />
-
-
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <ImageView
+                        android:id="@+id/IMG_box36"
+                        style="@style/Obstacle_style"
+                        app:srcCompat="@drawable/box" />
+
+                    <ImageView
+                        android:id="@+id/IMG_box37"
+                        style="@style/Obstacle_style"
+                        app:srcCompat="@drawable/box" />
+
+                    <ImageView
+                        android:id="@+id/IMG_box38"
+                        style="@style/Obstacle_style"
+                        app:srcCompat="@drawable/box" />
+
+                    <ImageView
+                        android:id="@+id/IMG_box39"
+                        style="@style/Obstacle_style"
+                        app:srcCompat="@drawable/box" />
+
+                    <ImageView
+                        android:id="@+id/IMG_box40"
+                        style="@style/Obstacle_style"
+                        app:srcCompat="@drawable/box" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <ImageView
+                        android:id="@+id/IMG_box41"
+                        style="@style/Obstacle_style"
+                        app:srcCompat="@drawable/box" />
+
+                    <ImageView
+                        android:id="@+id/IMG_box42"
+                        style="@style/Obstacle_style"
+                        app:srcCompat="@drawable/box" />
+
+                    <ImageView
+                        android:id="@+id/IMG_box43"
+                        style="@style/Obstacle_style"
+                        app:srcCompat="@drawable/box" />
+
+                    <ImageView
+                        android:id="@+id/IMG_box44"
+                        style="@style/Obstacle_style"
+                        app:srcCompat="@drawable/box" />
+
+                    <ImageView
+                        android:id="@+id/IMG_box45"
+                        style="@style/Obstacle_style"
+                        app:srcCompat="@drawable/box" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/car_container"
@@ -333,7 +398,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="6dp"
+                    android:padding="@dimen/box_padding"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/car" />
 
@@ -342,7 +407,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="6dp"
+                    android:padding="@dimen/box_padding"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/car" />
 
@@ -351,7 +416,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="6dp"
+                    android:padding="@dimen/box_padding"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/car" />
 
@@ -360,7 +425,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="6dp"
+                    android:padding="@dimen/box_padding"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/car" />
 
@@ -369,7 +434,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="6dp"
+                    android:padding="@dimen/box_padding"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/car" />
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -383,16 +448,16 @@
             android:weightSum="5">
 
             <Space android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
-            <View android:layout_width="2dp" android:layout_height="match_parent" android:background="#4DFFFFFF" />
+            <View style="@style/divider_style"/>
 
             <Space android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
-            <View android:layout_width="2dp" android:layout_height="match_parent" android:background="#4DFFFFFF" />
+            <View style="@style/divider_style"/>
 
             <Space android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
-            <View android:layout_width="2dp" android:layout_height="match_parent" android:background="#4DFFFFFF" />
+            <View style="@style/divider_style"/>
 
             <Space android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
-            <View android:layout_width="2dp" android:layout_height="match_parent" android:background="#4DFFFFFF" />
+            <View style="@style/divider_style"/>
 
             <Space android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" />
         </LinearLayout>
@@ -426,7 +491,7 @@
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/main_FAB_right"
             android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_height="75dp"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"

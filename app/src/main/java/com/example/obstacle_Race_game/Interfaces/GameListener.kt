@@ -14,8 +14,15 @@ interface GameListener {
     fun onLaneChange(newLaneIndex: Int)
 
 
-    //SIGNAL FOR CHANGING NUM OF LIVES
+
+    //SIGNAL FOR COLLISION SIGNALING
     fun onCollision()
+
+    //SIGNAL FOR CHANGING NUM OF LIVES
+    fun onLivesUpdate()
+
+//SIGNAL FOR COIN SOUND ON COLLECTION
+    fun onCoinCollected()
 
     //SIGNAL FOR GAME OVER
     fun onGameOver()

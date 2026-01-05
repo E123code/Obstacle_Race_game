@@ -16,13 +16,13 @@ import com.example.obstacle_Race_game.Interfaces.GameListener
 import com.example.obstacle_Race_game.Interfaces.TiltCallback
 import com.example.obstacle_Race_game.utilities.SignalManager
 import com.example.obstacle_Race_game.logic.GameManager
+import com.example.obstacle_Race_game.utilities.SingleSoundPlayer
 import com.example.obstacle_Race_game.utilities.TiltDetector
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.math.abs
 
 
 class MainActivity : AppCompatActivity(),GameListener{
@@ -46,6 +46,10 @@ class MainActivity : AppCompatActivity(),GameListener{
 
     private lateinit var tiltDetector: TiltDetector
 
+    private lateinit var controlContainer: View
+
+    private var controlMode: String = Constants.BundleKeys.BUTTONS
+
     private var lastLaneChangeTime: Long = 0L
     private var currentGameTickDelay: Long = Constants.GameLogic.GAME_TICK_MS
 
@@ -67,6 +71,11 @@ class MainActivity : AppCompatActivity(),GameListener{
     private  fun findViews(){
         main_FAB_right = findViewById(R.id.main_FAB_right)
         main_FAB_left = findViewById(R.id.main_FAB_left)
+
+        main_LBL_score = findViewById(R.id.main_LBL_score)
+
+        controlContainer = findViewById(R.id.control_container)
+
         main_IMG_hearts = arrayOf(
             findViewById(R.id.Main_IMG_heart1) ,
             findViewById(R.id.Main_IMG_heart2) ,
@@ -130,16 +139,41 @@ class MainActivity : AppCompatActivity(),GameListener{
                 findViewById(R.id.IMG_box33),
                 findViewById(R.id.IMG_box34),
                 findViewById(R.id.IMG_box35)
-            )
+            ),
+            arrayOf(
+                findViewById(R.id.IMG_box36),
+                findViewById(R.id.IMG_box37),
+                findViewById(R.id.IMG_box38),
+                findViewById(R.id.IMG_box39),
+                findViewById(R.id.IMG_box40),
+            ),
+            arrayOf(
+                findViewById(R.id.IMG_box41),
+                findViewById(R.id.IMG_box42),
+                findViewById(R.id.IMG_box43),
+                findViewById(R.id.IMG_box44),
+                findViewById(R.id.IMG_box45)
+            ),
 
         )
     }
 
     private fun initViews(){
+        val bundle: Bundle? = intent.extras
 
-        initTiltDetector()
-        main_FAB_right.setOnClickListener {v: View -> gameManager.moveCar(1)}
-        main_FAB_left.setOnClickListener {v: View -> gameManager.moveCar(-1)}
+        main_LBL_score.text = gameManager.score.toString()
+
+        controlMode = bundle?.getString(Constants.BundleKeys.CONTROL_MODE)?: Constants.BundleKeys.BUTTONS
+
+        if(controlMode == Constants.BundleKeys.SENSORS) {
+            controlContainer.visibility = View.GONE
+            initTiltDetector()
+        }else{
+            controlContainer.visibility = View.VISIBLE
+            main_FAB_right.setOnClickListener {v: View -> gameManager.moveCar(1)}
+            main_FAB_left.setOnClickListener {v: View -> gameManager.moveCar(-1)}
+        }
+
         // When the activity resumes, the game loop should start.
         gameManager.resetGame()
 
@@ -152,29 +186,39 @@ class MainActivity : AppCompatActivity(),GameListener{
             object : TiltCallback {
                 override fun onTiltX(x: Float)
                 {
-                    if (System.currentTimeMillis() - lastLaneChangeTime >= Constants.GameLogic.LANE_CHANGE_DELAY_MS) {
-                        if (abs(x) >= 3.0) {
-                            gameManager.moveCar(-1)
-                            lastLaneChangeTime = System.currentTimeMillis()
-                        } else if (abs(x) <= -3.0) {
-                            gameManager.moveCar(1)
-                            lastLaneChangeTime = System.currentTimeMillis()
-                        }
-                    }
+                    handleMovement(x)
                 }
 
                 override fun onTiltY(y: Float) {
-                    currentGameTickDelay = when {
-                        y < 0.0f -> Constants.GameLogic.GAME_TICK_MS / 2
-                        y > 6.0f -> Constants.GameLogic.GAME_TICK_MS * 2
-                        else -> Constants.GameLogic.GAME_TICK_MS
-                    }
+                   handleSpeed(y)
                 }
 
 
 
             }
         )
+    }
+
+    private fun handleMovement(x: Float){
+        if (System.currentTimeMillis() - lastLaneChangeTime >= Constants.GameLogic.LANE_CHANGE_DELAY_MS) {
+            if (x >= 3.0) {
+                gameManager.moveCar(-1)
+                lastLaneChangeTime = System.currentTimeMillis()
+            } else if (x <= -3.0) {
+                gameManager.moveCar(1)
+                lastLaneChangeTime = System.currentTimeMillis()
+            }
+        }
+
+    }
+
+
+    private fun handleSpeed(y:Float){
+        currentGameTickDelay = when {
+            y < 0.0f -> Constants.GameLogic.GAME_TICK_MS / 2
+            y > 6.0f -> Constants.GameLogic.GAME_TICK_MS * 2
+            else -> Constants.GameLogic.GAME_TICK_MS
+        }
     }
 
     private fun startGameLoop(){
@@ -188,7 +232,7 @@ class MainActivity : AppCompatActivity(),GameListener{
 
                     gameManager.onGameTick(this)
 
-                    delay(Constants.GameLogic.GAME_TICK_MS)
+                    delay(currentGameTickDelay)
 
                 }
             }
@@ -205,14 +249,18 @@ class MainActivity : AppCompatActivity(),GameListener{
     override fun onPause() {
         super.onPause()
         Log.d("Game Status","On Pause!")
-        tiltDetector.stop()
+        if(controlMode == Constants.BundleKeys.SENSORS) {
+            tiltDetector.stop()
+        }
         stopGameLoop()
     }
 
     override fun onResume() {
         super.onResume()
         Log.d("Game Status","On Resume!")
-        tiltDetector.start()
+        if(controlMode == Constants.BundleKeys.SENSORS) {
+            tiltDetector.start()
+        }
         if(gameManager.isGameRunning){
             startGameLoop()
         }
@@ -257,14 +305,25 @@ class MainActivity : AppCompatActivity(),GameListener{
         }
     }
 
+
+
     override fun onCollision() {
         SignalManager.getInstance().toast("you Crashed!", SignalManager.ToastLength.SHORT)
         SignalManager.getInstance().vibrate()
-        if (gameManager.collisions!= 0){
-            main_IMG_hearts[main_IMG_hearts.size - gameManager.collisions]
-                .visibility = View.INVISIBLE
-        }
+        val ssp = SingleSoundPlayer(this)
+        ssp.playSound(R.raw.car_crash_sound_effect)
+    }
 
+    override fun onLivesUpdate() {
+        val livesLeft = main_IMG_hearts.size- gameManager.collisions
+        for (i in main_IMG_hearts.indices) {
+            main_IMG_hearts[i].visibility = if (i < livesLeft) View.VISIBLE else View.INVISIBLE
+        }
+    }
+
+    override fun onCoinCollected() {
+        val ssp = SingleSoundPlayer(this)
+        ssp.playSound(R.raw.coin_collect)
     }
 
     override fun onGameOver() {
@@ -276,14 +335,15 @@ class MainActivity : AppCompatActivity(),GameListener{
                 obstacle.visibility = View.GONE
             }
         }
-        changeActivity("😭Game Over!")
+        changeActivity("😭Game Over!",gameManager.score)
     }
 
 
-    private fun changeActivity(message: String){
+    private fun changeActivity(message: String,score: Int){
         val intent = Intent(this, GameOverActivity::class.java)
         var bundle = Bundle()
-        bundle.putString("MESSAGE", message)
+        bundle.putString(Constants.BundleKeys.MESSAGE_KEY, message)
+        bundle.putInt(Constants.BundleKeys.SCORE_KEY,score)
         intent.putExtras(bundle)
         startActivity(intent)
         finish()

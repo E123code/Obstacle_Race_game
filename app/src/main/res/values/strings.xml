@@ -1,5 +1,12 @@
 <resources>
-    <string name="app_name">obstacle_game</string>
+    <string name="app_name" translatable="false">obstacle_game</string>
     <string name="move_left">move left</string>
     <string name="move_right">move right</string>
+    <string name="send">send</string>
+    <string name="please_enter_name">Enter name</string>
+    <string name="Buttons" translatable="false">Buttons mode</string>
+    <string name="sensors" translatable="false">Sensors mode </string>
+    <string name="leaderboard_BTN" translatable="false">LeaderBoard </string>
+    <string name="welcome_title" translatable="false">"Welcome to Obstacles Race game!"</string>
+
 </resources>

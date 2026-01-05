@@ -3,8 +3,11 @@ package com.example.obstacle_Race_game.utilities
 class Constants {
     object GameLogic {
         const val LANES = 5
-        const val ROAD_DEPTH = 7
-        const val GAME_TICK_MS = 600L
+        const val ROAD_DEPTH = 9
+      const val GAME_TICK_MS = 500L
+
+
+
         const val LANE_CHANGE_DELAY_MS = 200L
         const val INVULNERABILITY_DURATION_MS = 2000L
 
@@ -18,6 +21,18 @@ class Constants {
         const val OBSTACLE = 1
         const val  COIN =2
 
+    }
+
+    object SP_KEYS {
+        const val DATA_FILE: String = "DATA_FILE"
+    }
+
+    object BundleKeys {
+        const val MESSAGE_KEY: String = "MESSAGE_KEY"
+        const val SCORE_KEY: String = "SCORE_KEY"
+        const val CONTROL_MODE: String = "CONTROL_MODE"
+        const val  SENSORS: String = "SENSORS"
+        const val  BUTTONS: String = "BUTTONS"
     }
 
 }
