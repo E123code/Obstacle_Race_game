@@ -2,26 +2,26 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/leaderboard"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="2"
     tools:context=".LeaderBoardActivity">
 
     <FrameLayout
         android:id="@+id/leaderboard_FRAME_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:padding="@dimen/default_padding"/>
+        />
 
     <FrameLayout
         android:id="@+id/leaderboard_FRAME_map"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/blue_300"
-        android:padding="@dimen/default_padding"/>
+        android:background="@color/blue_300" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

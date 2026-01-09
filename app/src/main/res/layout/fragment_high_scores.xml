@@ -33,6 +33,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="8dp"/>
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/records_LBL_empty_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_state"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/record_Title_leaderBoard" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/LeaderBoard_RV_List"
         android:layout_width="0dp"

@@ -11,15 +11,18 @@ import com.example.obstacle_Race_game.interfaces.Callback_HighScore_clicked
 class LeaderBoardActivity : AppCompatActivity(), Callback_HighScore_clicked {
 
     private lateinit var binding: ActivityLeaderBoardBinding
+
     private lateinit var highScoresFragment: HighScoresFragment
     private lateinit var mapFragment: MapFragment
+
+    private var isActivityVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLeaderBoardBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -45,8 +48,21 @@ class LeaderBoardActivity : AppCompatActivity(), Callback_HighScore_clicked {
     }
 
     override fun highScoreItemClicked(lat: Double, lon: Double) {
-
+        if (isActivityVisible){
+            mapFragment.zoom(lat,lon)
+        }
     }
+
+    override fun onResume() {
+        super.onResume()
+        isActivityVisible = true
+    }
+
+    override fun onStop() {
+        super.onStop()
+        isActivityVisible = false
+    }
+
 
 
 }

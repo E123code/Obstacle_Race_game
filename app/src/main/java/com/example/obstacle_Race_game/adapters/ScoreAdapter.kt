@@ -31,7 +31,7 @@ class ScoreAdapter(private val scores: List<HighScore>,
     ) {
         with(holder){
             with(getItem(position)){
-                binding.recordLBLName.text = username
+                binding.recordLBLName.text = this.playerName
                 binding.recordLBLScore.text = highScore.toString()
                 binding.recordLBLRank.text = "#${position + 1}"
                 binding.root.setOnClickListener{

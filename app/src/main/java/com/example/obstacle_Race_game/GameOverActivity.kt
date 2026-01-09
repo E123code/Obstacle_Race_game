@@ -1,9 +1,8 @@
 package com.example.obstacle_Race_game
 
-import android.annotation.SuppressLint
+
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
@@ -13,11 +12,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.obstacle_Race_game.model.HighScore
 import com.example.obstacle_Race_game.model.RecordManager
 import com.example.obstacle_Race_game.utilities.Constants
+import com.example.obstacle_Race_game.utilities.LocationHelper
 import com.example.obstacle_Race_game.utilities.SignalManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.Priority
-import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
@@ -88,24 +86,6 @@ class GameOverActivity: AppCompatActivity() {
         }
     }
 
-
-    @SuppressLint("MissingPermission")
-    fun fetchLocation(onDone: (lat: Double, lon: Double) -> Unit) {
-        val cts = CancellationTokenSource()
-
-        fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, cts.token)
-            .addOnSuccessListener { location ->
-                if (location != null) {
-                    onDone(location.latitude, location.longitude)
-                    Log.d("LOCATION","got location!")
-                } else {
-                    onDone(0.0, 0.0)
-                }
-            }
-            .addOnFailureListener {
-                onDone(0.0, 0.0)
-            }
-    }
     private fun openRecordDialog(score : Int?) {
         gameOver_NewRecord.visibility = View.VISIBLE
 
@@ -113,7 +93,9 @@ class GameOverActivity: AppCompatActivity() {
             val name = highScore_ET_text.text.toString()
             if (name.isNotEmpty()) {
                 highScore_BTN_send.isEnabled = false
-                fetchLocation { lat, lon ->
+
+                val locationHelper = LocationHelper(this)
+                locationHelper.fetchLocation { lat, lon ->
                     val newHighScore =
                         HighScore.Builder().username(name).highScore(score).lat(lat).lon(lon)
                             .build()
@@ -121,6 +103,7 @@ class GameOverActivity: AppCompatActivity() {
                     RecordManager.addRecord(newHighScore)
                     SignalManager.getInstance()
                         .toast("Record Saved!", SignalManager.ToastLength.SHORT)
+
                     val intent = Intent(this, LeaderBoardActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -129,6 +112,7 @@ class GameOverActivity: AppCompatActivity() {
             } else {
                 SignalManager.getInstance()
                     .toast("Please enter name", SignalManager.ToastLength.SHORT)
+                return@setOnClickListener
             }
 
         }
