@@ -1,4 +1,4 @@
-package com.example.obstacle_Race_game.Interfaces
+package com.example.obstacle_Race_game.interfaces
 
 /**
  * Interface to be implemented in MainActivity class

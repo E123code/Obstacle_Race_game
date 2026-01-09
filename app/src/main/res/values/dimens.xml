@@ -4,7 +4,8 @@
     <dimen name="heart_size">40dp</dimen>
     <dimen name="gameOver_text_size"> 55sp</dimen>
     <dimen name="welcome_text_size"> 60sp</dimen>
-    <dimen name="title_size">32sp</dimen>
+    <dimen name="default_padding">16dp</dimen>
+    <dimen name="text_size">32sp</dimen>
     <dimen name="box_padding">2dp</dimen>
     <dimen name="coin_padding">8dp</dimen>
 </resources>

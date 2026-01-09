@@ -60,7 +60,7 @@
             android:layout_marginTop="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"
             android:textColor="@color/black"
-            android:textSize="@dimen/title_size"
+            android:textSize="@dimen/text_size"
             android:textStyle="bold"
             tools:text="00000" />
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -76,14 +76,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:weightSum="11.2">
+            android:weightSum="10.2">
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/road_matrix"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="10"
+                android:layout_weight="9"
                 android:orientation="vertical"
-                android:weightSum="10">
+                android:weightSum="9">
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -398,7 +398,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="@dimen/box_padding"
+
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/car" />
 
@@ -407,7 +407,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="@dimen/box_padding"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/car" />
 
@@ -416,7 +415,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="@dimen/box_padding"
+
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/car" />
 
@@ -425,7 +424,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="@dimen/box_padding"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/car" />
 
@@ -434,7 +432,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="@dimen/box_padding"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/car" />
             </androidx.appcompat.widget.LinearLayoutCompat>

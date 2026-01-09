@@ -2,6 +2,7 @@ package com.example.obstacle_Race_game
 
 import android.app.Application
 import com.example.obstacle_Race_game.utilities.ImageLoader
+import com.example.obstacle_Race_game.utilities.SharedPreferencesManager
 import com.example.obstacle_Race_game.utilities.SignalManager
 
 class App: Application() {
@@ -9,5 +10,6 @@ class App: Application() {
         super.onCreate()
         SignalManager.init(this)
         ImageLoader.init(this)
+        SharedPreferencesManager.init(this)
     }
 }

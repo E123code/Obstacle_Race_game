@@ -5,7 +5,7 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import com.example.obstacle_Race_game.Interfaces.TiltCallback
+import com.example.obstacle_Race_game.interfaces.TiltCallback
 
 
 class TiltDetector(context: Context, private val tiltCallback: TiltCallback) {

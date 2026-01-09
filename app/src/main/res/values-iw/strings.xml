@@ -4,4 +4,5 @@
     <string name="move_right">זוז ימינה</string>
     <string name="send">שלח</string>
     <string name="please_enter_name">הכנס שם</string>
+    <string name="LeaderBoard">"טבלת שיאים "</string>
 </resources>

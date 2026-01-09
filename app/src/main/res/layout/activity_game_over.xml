@@ -2,7 +2,7 @@
 <RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/game_over"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_road"
@@ -26,6 +26,7 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/highScore_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/gameOver_LBL_title"
@@ -35,7 +36,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/highScore_ET_text"
+            android:id="@+id/start_ET_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -45,27 +46,31 @@
             android:textColorHint="@color/black" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/highScore_BTN_send"
+            android:id="@+id/start_BTN_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_gravity="center"
+            android:backgroundTint="@color/text_color"
+            android:textColor="@color/white"
             android:text="@string/send"
-            android:textSize="@dimen/title_size"/>
+            android:textSize="@dimen/text_size"/>
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/gameOver_BTN_newGame"
+        android:id="@+id/gameOver_BTN_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/default_margin"
         android:textStyle="bold"
-        android:text="Main Menu"
-        android:textSize="@dimen/title_size"
+        android:text="@string/main_menu"
+        android:backgroundTint="@color/text_color"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size"
         />
 
 

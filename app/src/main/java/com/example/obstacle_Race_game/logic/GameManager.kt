@@ -1,7 +1,7 @@
 package com.example.obstacle_Race_game.logic
 
 import com.example.obstacle_Race_game.utilities.Constants
-import com.example.obstacle_Race_game.Interfaces.GameListener
+import com.example.obstacle_Race_game.interfaces.GameListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

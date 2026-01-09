@@ -8,5 +8,9 @@
     <string name="sensors" translatable="false">Sensors mode </string>
     <string name="leaderboard_BTN" translatable="false">LeaderBoard </string>
     <string name="welcome_title" translatable="false">"Welcome to Obstacles Race game!"</string>
+    <string name="LeaderBoard">LeaderBoard</string>
+    <string name="main_menu" translatable="false">Main Menu</string>
+    <string name="this_is_map_fragment">This Is Map Fragment</string>
+
 
 </resources>

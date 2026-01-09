@@ -1,8 +1,11 @@
 package com.example.obstacle_Race_game
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,6 +18,13 @@ class StartActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityStartBinding
 
+    private val requestPermissionLauncher: ActivityResultLauncher<Array<String>> =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+
+            val fineGranted = permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false
+            val coarseGranted = permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false
+
+        }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +38,13 @@ class StartActivity : AppCompatActivity() {
             insets
         }
         initViews()
+
+        requestPermissionLauncher.launch(
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+        )
     }
 
 

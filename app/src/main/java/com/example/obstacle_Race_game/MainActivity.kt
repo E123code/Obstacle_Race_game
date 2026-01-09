@@ -12,10 +12,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.obstacle_Race_game.utilities.Constants
-import com.example.obstacle_Race_game.Interfaces.GameListener
-import com.example.obstacle_Race_game.Interfaces.TiltCallback
+import com.example.obstacle_Race_game.interfaces.GameListener
+import com.example.obstacle_Race_game.interfaces.TiltCallback
 import com.example.obstacle_Race_game.utilities.SignalManager
 import com.example.obstacle_Race_game.logic.GameManager
+import com.example.obstacle_Race_game.model.RecordManager
 import com.example.obstacle_Race_game.utilities.SingleSoundPlayer
 import com.example.obstacle_Race_game.utilities.TiltDetector
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -215,10 +216,10 @@ class MainActivity : AppCompatActivity(),GameListener{
 
     private fun handleSpeed(y:Float){
         currentGameTickDelay = when {
-            y < 0.0f -> Constants.GameLogic.GAME_TICK_MS / 2
-            y > 6.0f -> Constants.GameLogic.GAME_TICK_MS * 2
+            y < -2.0 -> currentGameTickDelay - Constants.GameLogic.TICK_STEP_MS
+            y > 2.0f -> currentGameTickDelay + Constants.GameLogic.TICK_STEP_MS
             else -> Constants.GameLogic.GAME_TICK_MS
-        }
+        }.coerceIn(Constants.GameLogic.MIN_TICK_MS, Constants.GameLogic.MAX_TICK_MS)
     }
 
     private fun startGameLoop(){
@@ -335,11 +336,16 @@ class MainActivity : AppCompatActivity(),GameListener{
                 obstacle.visibility = View.GONE
             }
         }
-        changeActivity("😭Game Over!",gameManager.score)
+        if(RecordManager.isNewRecord(gameManager.score))
+            changeActivity(Constants.MESSAGES.NEW_HIGH_SCORE, gameManager.score)
+        else {
+            changeActivity(Constants.MESSAGES.GAME_OVER, gameManager.score)
+        }
     }
 
 
     private fun changeActivity(message: String,score: Int){
+        Log.d("Game Status",message+score)
         val intent = Intent(this, GameOverActivity::class.java)
         var bundle = Bundle()
         bundle.putString(Constants.BundleKeys.MESSAGE_KEY, message)

@@ -6,14 +6,17 @@ class Constants {
         const val ROAD_DEPTH = 9
       const val GAME_TICK_MS = 500L
 
+        const val MIN_TICK_MS = 200L // maximal speed
 
+        const val MAX_TICK_MS = 800L// minimal speed
 
+        const val  TICK_STEP_MS = 100L
         const val LANE_CHANGE_DELAY_MS = 200L
         const val INVULNERABILITY_DURATION_MS = 2000L
 
-        const val SCORE_DEFAULT: Int = 10
+        const val SCORE_DEFAULT: Int = 5
 
-        const val COIN_DEFAULT: Int = 15
+        const val COIN_DEFAULT: Int = 10
     }
 
     object ItemTypes{
@@ -24,8 +27,16 @@ class Constants {
     }
 
     object SP_KEYS {
-        const val DATA_FILE: String = "DATA_FILE"
+        const val RECORDS_KEY: String = "RECORDS_KEY"
     }
+
+    object MESSAGES{
+        const val  GAME_OVER ="😭Game Over!"
+        const val  NEW_HIGH_SCORE = "New HighScore!🏆"
+
+    }
+
+
 
     object BundleKeys {
         const val MESSAGE_KEY: String = "MESSAGE_KEY"
@@ -33,6 +44,8 @@ class Constants {
         const val CONTROL_MODE: String = "CONTROL_MODE"
         const val  SENSORS: String = "SENSORS"
         const val  BUTTONS: String = "BUTTONS"
+
+
     }
 
 }
