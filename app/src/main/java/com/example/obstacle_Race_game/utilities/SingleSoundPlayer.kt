@@ -5,6 +5,9 @@ import android.media.MediaPlayer
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
+/**
+ * class for playing sound effects in the game
+ */
 class SingleSoundPlayer(context: Context) {
     private val context: Context = context.applicationContext
     private val executor: Executor = Executors.newSingleThreadExecutor()

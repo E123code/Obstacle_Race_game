@@ -8,6 +8,9 @@ import com.example.obstacle_Race_game.interfaces.Callback_HighScore_clicked
 import com.example.obstacle_Race_game.databinding.HighScoreBinding
 import com.example.obstacle_Race_game.model.HighScore
 
+/**
+ * Adapter for the recycleView list of high scores
+ */
 class ScoreAdapter(private val scores: List<HighScore>,
                    private val callback: Callback_HighScore_clicked):
     RecyclerView.Adapter<ScoreAdapter.HighScoreViewHolder>() {
@@ -44,10 +47,10 @@ class ScoreAdapter(private val scores: List<HighScore>,
     }
 
 
-    fun getItem(position: Int): HighScore = scores[position]
+    fun getItem(position: Int): HighScore = scores[position]// getting the high score by index
 
 
-        override fun getItemCount(): Int = scores.size
+        override fun getItemCount(): Int = scores.size //amount of records
 
 
          class HighScoreViewHolder(val binding: HighScoreBinding) :

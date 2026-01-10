@@ -1,5 +1,8 @@
 package com.example.obstacle_Race_game.model
 
+/**
+ * HighScore object for the HighScores in the list
+ */
 data class HighScore private constructor(
     val playerName : String,
     val highScore : Int,

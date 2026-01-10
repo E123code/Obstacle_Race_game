@@ -181,6 +181,9 @@ class MainActivity : AppCompatActivity(),GameListener{
 
     }
 
+    /**
+     * initialize the tilt detector
+     */
     private fun initTiltDetector() {
         tiltDetector = TiltDetector(
             this,
@@ -200,12 +203,15 @@ class MainActivity : AppCompatActivity(),GameListener{
         )
     }
 
+    /**
+     * handle lane change on sensors mode on tilting left/right
+     */
     private fun handleMovement(x: Float){
         if (System.currentTimeMillis() - lastLaneChangeTime >= Constants.GameLogic.LANE_CHANGE_DELAY_MS) {
-            if (x >= 3.0) {
+            if (x >= 3.0) {// moving left when tilting left
                 gameManager.moveCar(-1)
                 lastLaneChangeTime = System.currentTimeMillis()
-            } else if (x <= -3.0) {
+            } else if (x <= -3.0) {// moving right when tilting right
                 gameManager.moveCar(1)
                 lastLaneChangeTime = System.currentTimeMillis()
             }
@@ -213,11 +219,14 @@ class MainActivity : AppCompatActivity(),GameListener{
 
     }
 
+    /**
+     * handle the speed in sensors mode on tilting the phone towards/ backwards
+     */
 
     private fun handleSpeed(y:Float){
         currentGameTickDelay = when {
-            y < -2.0 -> currentGameTickDelay - Constants.GameLogic.TICK_STEP_MS
-            y > 2.0f -> currentGameTickDelay + Constants.GameLogic.TICK_STEP_MS
+            y < -2.0 -> currentGameTickDelay - Constants.GameLogic.TICK_STEP_MS//increases speed with each tilt forwards
+            y > 2.0f -> currentGameTickDelay + Constants.GameLogic.TICK_STEP_MS// decreases speed with each tilt backwards
             else -> Constants.GameLogic.GAME_TICK_MS
         }.coerceIn(Constants.GameLogic.MIN_TICK_MS, Constants.GameLogic.MAX_TICK_MS)
     }

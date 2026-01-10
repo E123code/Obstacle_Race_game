@@ -8,6 +8,9 @@ import android.hardware.SensorManager
 import com.example.obstacle_Race_game.interfaces.TiltCallback
 
 
+/**
+ * class for handling the sensors management
+ */
 class TiltDetector(context: Context, private val tiltCallback: TiltCallback) {
 
     private val sensorManager = context.getSystemService(
@@ -17,10 +20,6 @@ class TiltDetector(context: Context, private val tiltCallback: TiltCallback) {
     private val sensor = sensorManager.getDefaultSensor(
         Sensor.TYPE_ACCELEROMETER
     )
-
-
-
-
 
     private lateinit var sensorEventListener: SensorEventListener
 

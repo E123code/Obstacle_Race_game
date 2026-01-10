@@ -72,7 +72,7 @@ class GameOverActivity: AppCompatActivity() {
             append("Score:")
             append(score)
         }
-
+//shows a dialog in case of new highScore that lets you enter your name
         if(message == Constants.MESSAGES.NEW_HIGH_SCORE){
             openRecordDialog(score)
         }else{
@@ -86,6 +86,12 @@ class GameOverActivity: AppCompatActivity() {
         }
     }
 
+    /**
+     * function that gets a score
+     * in the dialog if you enter a name it gets yours location
+     * and adds the highScore to the table
+     * if the name is empty shows a toast
+     */
     private fun openRecordDialog(score : Int?) {
         gameOver_NewRecord.visibility = View.VISIBLE
 

@@ -21,7 +21,7 @@ class GameManager(private val listener: GameListener) {
         private  set
 
 
-    var isCarInvulnerable = false
+    var isCarInvulnerable = false//flag to know when the car is invulnerable
         private set
 
     var score: Int = 0
@@ -82,7 +82,7 @@ class GameManager(private val listener: GameListener) {
                     newRow[obstacleLane] =when{
                         typeRoll <0.7 -> Constants.ItemTypes.OBSTACLE
                         else  -> Constants.ItemTypes.COIN
-                    }// 1 - there's obstacle 0- clear lane
+                    }
                     availableLanes.remove(obstacleLane)
                 }
             }

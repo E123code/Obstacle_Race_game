@@ -10,8 +10,9 @@ class Constants {
 
         const val MAX_TICK_MS = 800L// minimal speed
 
-        const val  TICK_STEP_MS = 100L
-        const val LANE_CHANGE_DELAY_MS = 200L
+        const val  TICK_STEP_MS = 100L // the amount of speed increase/decrease with each tilt forwards/backwards
+        const val LANE_CHANGE_DELAY_MS = 200L// delay for changing lanes
+
         const val INVULNERABILITY_DURATION_MS = 2000L
 
         const val SCORE_DEFAULT: Int = 5

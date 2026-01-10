@@ -18,6 +18,9 @@ class StartActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityStartBinding
 
+    /**
+     * requesting permissions for location access
+     */
     private val requestPermissionLauncher: ActivityResultLauncher<Array<String>> =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
 

@@ -52,7 +52,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
 
-
+    /**
+     * checks for location access permissions
+     */
     private fun enableMyLocationLayer() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
             == PackageManager.PERMISSION_GRANTED) {
@@ -61,6 +63,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+
+    /**
+     *zoom to the current user location
+     */
     private fun zoomToUserLocation() {
         val helper = LocationHelper(requireContext())
         helper.fetchLocation { lat, lng ->
@@ -71,13 +77,16 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    /**
+     * adds markers for the highScores in the HighScores list
+     */
     private fun markRecords(){
         val  scores = RecordManager.getRecords()
         for(score in scores){
             if(score.lat != 0.0 && score.lon !=0.0){
                 val  position = LatLng(score.lat, score.lon)
                 googleMap?.addMarker(
-                    MarkerOptions()
+                    MarkerOptions()//adds tag for the marker showing username and score
                         .position(position)
                         .title(score.playerName)
                         .snippet("Score: ${score.highScore}")
@@ -88,6 +97,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    /**
+     * zoom to the location where the highScore was made
+     */
     fun zoom(lat: Double, lon: Double) {
         val place = LatLng(lat,lon)
         googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(place, 15f))

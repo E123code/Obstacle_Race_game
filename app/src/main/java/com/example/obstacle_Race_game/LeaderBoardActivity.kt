@@ -47,6 +47,10 @@ class LeaderBoardActivity : AppCompatActivity(), Callback_HighScore_clicked {
 
     }
 
+    /**
+     * the callback when you click a score you zoom to is location in the mao
+     */
+
     override fun highScoreItemClicked(lat: Double, lon: Double) {
         if (isActivityVisible){
             mapFragment.zoom(lat,lon)

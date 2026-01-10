@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.example.obstacle_Race_game.R
 import java.lang.ref.WeakReference
 
+//for loading Images with glide
 class ImageLoader  private constructor(context: Context) {
     private val contextRef = WeakReference(context)
 
